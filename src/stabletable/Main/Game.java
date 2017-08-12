@@ -5,6 +5,9 @@ import java.awt.image.BufferStrategy;
 
 import stabletable.Main.Display.Display;
 import stabletable.Main.gfx.Assets;
+import stabletable.Main.states.GameState;
+import stabletable.Main.states.MenuState;
+import stabletable.Main.states.State;
 
 public class Game implements Runnable {
 
@@ -18,7 +21,11 @@ public class Game implements Runnable {
 	
 	private BufferStrategy bs;
 	private Graphics g;
-		
+	
+	// States
+	private State gameState;
+	private State menuState;
+	
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -28,6 +35,10 @@ public class Game implements Runnable {
 	private void init() {
 		display = new Display(title, width, height);
 		Assets.init();
+		
+		gameState = new GameState();
+		menuState = new MenuState();
+		State.setState(gameState);
 	}
 	
 	public void run() {
@@ -57,7 +68,8 @@ public class Game implements Runnable {
 	
 	
 	private void tick() {
-		
+		if(State.getState() != null)
+			State.getState().tick();
 	}
 	
 	private void render() {
@@ -70,7 +82,8 @@ public class Game implements Runnable {
 		// Clear screen
 		g.clearRect(0, 0, width, height);
 		// Draw here
-				
+		if(State.getState() != null)
+			State.getState().render(g);
 		// End Draw here
 		bs.show();
 		g.dispose();
