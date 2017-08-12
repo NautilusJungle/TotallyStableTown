@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 
 import stabletable.Main.Display.Display;
 import stabletable.Main.gfx.Assets;
+import stabletable.Main.input.KeyManager;
 import stabletable.Main.states.GameState;
 import stabletable.Main.states.MenuState;
 import stabletable.Main.states.State;
@@ -26,18 +27,23 @@ public class Game implements Runnable {
 	private State gameState;
 	private State menuState;
 	
+	// Input
+	private KeyManager keyManager;
+	
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
+		keyManager = new KeyManager();
 	}
 	
 	private void init() {
 		display = new Display(title, width, height);
+		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
 		
-		gameState = new GameState();
-		menuState = new MenuState();
+		gameState = new GameState(this);
+		menuState = new MenuState(this);
 		State.setState(gameState);
 	}
 	
