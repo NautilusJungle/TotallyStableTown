@@ -55,10 +55,9 @@ public class Game implements Runnable {
 		
 	}
 	
-	int x = 0;
 	
 	private void tick() {
-		x += 1;
+		
 	}
 	
 	private void render() {
@@ -71,9 +70,7 @@ public class Game implements Runnable {
 		// Clear screen
 		g.clearRect(0, 0, width, height);
 		// Draw here
-		
-		g.drawImage(Assets.player, x, 0, null);
-		
+				
 		// End Draw here
 		bs.show();
 		g.dispose();
