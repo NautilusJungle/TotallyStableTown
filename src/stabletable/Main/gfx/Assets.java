@@ -11,10 +11,11 @@ public class Assets {
 	
 	public static void init() {
 		SpriteSheet charSheet = new SpriteSheet(ImageLoader.loadImage("/textures/char-sheet.png"));
-	
+		SpriteSheet terrainSheet = new SpriteSheet(ImageLoader.loadImage("/textures/terrain-sheet.png"));
+		
 		player = charSheet.crop(0, 0, width, height);
-		dirt = charSheet.crop(width, 0, width, height);
-		grass = charSheet.crop(width*2, 0, width, height);
+		dirt = terrainSheet.crop(0, 0, width, height);
+		grass = terrainSheet.crop(width, 0, width, height);
 	}
 	
 }

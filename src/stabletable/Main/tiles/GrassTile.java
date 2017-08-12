@@ -1,0 +1,11 @@
+package stabletable.Main.tiles;
+
+import stabletable.Main.gfx.Assets;
+
+public class GrassTile extends Tile {
+
+	public GrassTile(int id) {
+		super(Assets.grass, id);
+	}
+
+}
