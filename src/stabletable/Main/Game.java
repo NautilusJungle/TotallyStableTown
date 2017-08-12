@@ -2,11 +2,9 @@ package stabletable.Main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
-import java.awt.image.BufferedImage;
 
 import stabletable.Main.Display.Display;
-import stabletable.Main.gfx.ImageLoader;
-import stabletable.Main.gfx.SpriteSheet;
+import stabletable.Main.gfx.Assets;
 
 public class Game implements Runnable {
 
@@ -20,10 +18,7 @@ public class Game implements Runnable {
 	
 	private BufferStrategy bs;
 	private Graphics g;
-	
-	private BufferedImage testImage;
-	private SpriteSheet charSheet;
-	
+		
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -32,8 +27,7 @@ public class Game implements Runnable {
 	
 	private void init() {
 		display = new Display(title, width, height);
-		testImage = ImageLoader.loadImage("/textures/char-sheet.png");
-		charSheet = new SpriteSheet(testImage,128);
+		Assets.init();
 	}
 	
 	public void run() {
@@ -63,7 +57,7 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		// Draw here
 		
-		g.drawImage(charSheet.crop(1, 1), 5, 5, null);
+		g.drawImage(Assets.player, 0, 0, null);
 		
 		// End Draw here
 		bs.show();
