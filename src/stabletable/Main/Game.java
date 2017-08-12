@@ -33,17 +33,32 @@ public class Game implements Runnable {
 	public void run() {
 		init();
 		
+		int fps = 60;
+		double timePerTick = 1000000000/fps;
+		double delta = 0;
+		long now;
+		long lastTime = System.nanoTime();
+		
 		while(running) {
-			tick();
-			render();
+			now = System.nanoTime();
+			delta += (now - lastTime)/timePerTick;
+			lastTime = now;
+			
+			if(delta >= 1) {
+				tick();
+				render();
+				delta--;
+			}
 		}
 		
 		stop();
 		
 	}
 	
+	int x = 0;
+	
 	private void tick() {
-
+		x += 1;
 	}
 	
 	private void render() {
@@ -57,7 +72,7 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		// Draw here
 		
-		g.drawImage(Assets.player, 0, 0, null);
+		g.drawImage(Assets.player, x, 0, null);
 		
 		// End Draw here
 		bs.show();
