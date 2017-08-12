@@ -5,6 +5,7 @@ import java.awt.image.BufferStrategy;
 
 import stabletable.Main.Display.Display;
 import stabletable.Main.gfx.Assets;
+import stabletable.Main.gfx.GameCamera;
 import stabletable.Main.input.KeyManager;
 import stabletable.Main.states.GameState;
 import stabletable.Main.states.MenuState;
@@ -30,6 +31,9 @@ public class Game implements Runnable {
 	// Input
 	private KeyManager keyManager;
 	
+	// Camera
+	private GameCamera gameCamera;
+	
 	public KeyManager getKeyManager() {
 		return keyManager;
 	}
@@ -46,11 +50,17 @@ public class Game implements Runnable {
 		display.getFrame().addKeyListener(keyManager);
 		Assets.init();
 		
+		gameCamera = new GameCamera(this, 0,0);
+		
 		gameState = new GameState(this);
 		menuState = new MenuState(this);
 		State.setState(gameState);
 	}
 	
+	public GameCamera getGameCamera() {
+		return gameCamera;
+	}
+
 	public void run() {
 		init();
 		
@@ -99,6 +109,14 @@ public class Game implements Runnable {
 		// End Draw here
 		bs.show();
 		g.dispose();
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
 	}
 
 	public synchronized void start() {
