@@ -30,6 +30,10 @@ public class Game implements Runnable {
 	// Input
 	private KeyManager keyManager;
 	
+	public KeyManager getKeyManager() {
+		return keyManager;
+	}
+
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -74,6 +78,8 @@ public class Game implements Runnable {
 	
 	
 	private void tick() {
+		keyManager.tick();
+		
 		if(State.getState() != null)
 			State.getState().tick();
 	}
