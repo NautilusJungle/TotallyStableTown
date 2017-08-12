@@ -2,8 +2,10 @@ package stabletable.Main;
 
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 import stabletable.Main.Display.Display;
+import stabletable.Main.gfx.ImageLoader;
 
 public class Game implements Runnable {
 
@@ -18,6 +20,8 @@ public class Game implements Runnable {
 	private BufferStrategy bs;
 	private Graphics g;
 	
+	private BufferedImage testImage;
+	
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -26,6 +30,7 @@ public class Game implements Runnable {
 	
 	private void init() {
 		display = new Display(title, width, height);
+		testImage = ImageLoader.loadImage("/textures/salut.png");
 	}
 	
 	public void run() {
@@ -51,11 +56,13 @@ public class Game implements Runnable {
 			return;
 		}
 		g = bs.getDrawGraphics();
-		// Dessin
+		// Clear screen
+		g.clearRect(0, 0, width, height);
+		// Draw here
 		
-		g.fillRect(0, 0, width, height);
+		g.drawImage(testImage,0,0,null);
 		
-		// End Dessin
+		// End Draw here
 		bs.show();
 		g.dispose();
 	}
