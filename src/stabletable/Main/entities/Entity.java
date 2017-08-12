@@ -5,6 +5,7 @@ import java.awt.Graphics;
 public abstract class Entity {
 
 	protected float x,y;
+	protected int width, height;
 	
 	public float getX() {
 		return x;
@@ -37,8 +38,6 @@ public abstract class Entity {
 	public void setHeight(int height) {
 		this.height = height;
 	}
-
-	protected int width, height;
 	
 	public Entity(float x, float y, int width, int height) {
 		this.x = x;

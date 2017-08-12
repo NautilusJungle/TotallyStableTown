@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import stabletable.Main.Game;
 import stabletable.Main.gfx.Assets;
-import stabletable.Main.input.KeyManager;
 
 public class Player extends Creature {
 
@@ -17,20 +16,27 @@ public class Player extends Creature {
 
 	@Override
 	public void tick() {
-		KeyManager k = game.getKeyManager();
-		if(k.up)
-			y-= 3;
-		if(k.down)
-			y+= 3;
-		if(k.left)
-			x-= 3;
-		if(k.right)
-			x+= 3;
+		getInput();
+		move();
 	}
 
+	private void getInput() {
+		xMove = 0;
+		yMove = 0;
+		
+		if(game.getKeyManager().up)
+			yMove = -speed;
+		if(game.getKeyManager().down)
+			yMove = speed;
+		if(game.getKeyManager().left)
+			xMove = -speed;
+		if(game.getKeyManager().right)
+			xMove = speed;
+	}
+	
 	@Override
 	public void render(Graphics g) {
-		g.drawImage(Assets.player, (int) x, (int) y, null);
+		g.drawImage(Assets.player, (int) x, (int) y, width, height, null);
 	}
 
 }
