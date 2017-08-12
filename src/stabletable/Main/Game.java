@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 
 import stabletable.Main.Display.Display;
 import stabletable.Main.gfx.ImageLoader;
+import stabletable.Main.gfx.SpriteSheet;
 
 public class Game implements Runnable {
 
@@ -21,6 +22,7 @@ public class Game implements Runnable {
 	private Graphics g;
 	
 	private BufferedImage testImage;
+	private SpriteSheet charSheet;
 	
 	public Game(String title, int width, int height) {
 		this.width = width;
@@ -30,7 +32,8 @@ public class Game implements Runnable {
 	
 	private void init() {
 		display = new Display(title, width, height);
-		testImage = ImageLoader.loadImage("/textures/salut.png");
+		testImage = ImageLoader.loadImage("/textures/char-sheet.png");
+		charSheet = new SpriteSheet(testImage,128);
 	}
 	
 	public void run() {
@@ -60,7 +63,7 @@ public class Game implements Runnable {
 		g.clearRect(0, 0, width, height);
 		// Draw here
 		
-		g.drawImage(testImage,0,0,null);
+		g.drawImage(charSheet.crop(1, 1), 5, 5, null);
 		
 		// End Draw here
 		bs.show();
