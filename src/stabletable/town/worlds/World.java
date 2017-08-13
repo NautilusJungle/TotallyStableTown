@@ -3,6 +3,9 @@ package stabletable.town.worlds;
 import java.awt.Graphics;
 
 import stabletable.town.Main.Handler;
+import stabletable.town.entities.creatures.EntityManager;
+import stabletable.town.entities.creatures.Player;
+import stabletable.town.entities.statics.Tree;
 import stabletable.town.tiles.Tile;
 import stabletable.town.utils.Utils;
 
@@ -12,13 +15,22 @@ public class World {
 	private int[][] tiles;
 	private Handler handler;
 	
+	// Entities
+	private EntityManager entityManager;
+	
 	public World(Handler handler, String path) {
 		this.handler = handler;
+		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
+		entityManager.addEntity(new Tree(handler, 300, 300));
+		
 		loadWorld(path);
+		
+		entityManager.getPlayer().setX(spawnX);
+		entityManager.getPlayer().setY(spawnY);
 	}
 	
 	public void tick() {
-		
+		entityManager.tick();
 	}
 	
 	public void render(Graphics g) {
@@ -32,6 +44,8 @@ public class World {
 				getTile(x,y).render(g, (int) (x*Tile.TILEWIDTH - handler.getGameCamera().getxOffset()), (int) (y*Tile.TILEHEIGHT - handler.getGameCamera().getyOffset()));
 			}
 		}
+		// Entities
+		entityManager.render(g);
 	}
 	
 	public int getWidth() {

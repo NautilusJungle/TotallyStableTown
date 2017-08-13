@@ -10,9 +10,11 @@ public class Assets {
 	
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage  player,dirt, grass, brickWall;
+	public static BufferedImage tree;
 	
 	public static SpriteSheet charSheet = new SpriteSheet(ImageLoader.loadImage("/textures/char-sheet.png"));
 	public static SpriteSheet terrainSheet = new SpriteSheet(ImageLoader.loadImage("/textures/terrain-sheet.png"));
+	public static SpriteSheet statentSheet = new SpriteSheet(ImageLoader.loadImage("/textures/statent-sheet.png"));
 	
 	public static void init() {
 		
@@ -31,6 +33,9 @@ public class Assets {
 		dirt = terrainSheet.crop(0, 0, width, height);
 		grass = terrainSheet.crop(width, 0, width, height);
 		brickWall = terrainSheet.crop(width*2, 0, width, height);
+		
+		// Static Entities
+		tree = statentSheet.crop(0, 0, width, height);
 	
 	}
 	
