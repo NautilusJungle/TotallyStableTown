@@ -11,6 +11,10 @@ import stabletable.town.utils.Utils;
 
 public class World {
 
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
 	private int width, height, spawnX, spawnY;
 	private int[][] tiles;
 	private Handler handler;
@@ -21,7 +25,7 @@ public class World {
 	public World(Handler handler, String path) {
 		this.handler = handler;
 		entityManager = new EntityManager(handler, new Player(handler, 100, 100));
-		entityManager.addEntity(new Tree(handler, 300, 300));
+		entityManager.addEntity(new Tree(handler, 100, 200));
 		
 		loadWorld(path);
 		
