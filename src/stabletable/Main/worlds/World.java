@@ -34,6 +34,14 @@ public class World {
 		}
 	}
 	
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
 	public Tile getTile(int x, int y) {
 		if(x<0 || y<0 || x>=width || y>=height)
 			return Tile.grassTile;
