@@ -10,6 +10,7 @@ import stabletable.town.input.KeyManager;
 import stabletable.town.input.MouseManager;
 import stabletable.town.states.GameState;
 import stabletable.town.states.MenuState;
+import stabletable.town.states.OptionsState;
 import stabletable.town.states.State;
 
 public class Game implements Runnable {
@@ -17,7 +18,7 @@ public class Game implements Runnable {
 	private Display display;
 	public int width, height;
 	public String title;
-	
+
 	private boolean running = false;
 	
 	private Thread thread;
@@ -28,6 +29,7 @@ public class Game implements Runnable {
 	// States
 	public State gameState;
 	public State menuState;
+	public State optionsState;
 	
 	// Input
 	private KeyManager keyManager;
@@ -45,6 +47,10 @@ public class Game implements Runnable {
 
 	public MouseManager getMouseManager() {
 		return mouseManager;
+	}
+	
+	public Display getDisplay() {
+		return display;
 	}
 	
 	public Game(String title, int width, int height) {
@@ -68,7 +74,9 @@ public class Game implements Runnable {
 		gameCamera = new GameCamera(handler, 0,0);
 		
 		gameState = new GameState(handler);
+		optionsState = new OptionsState(handler);
 		menuState = new MenuState(handler);
+		
 		State.setState(menuState);
 	}
 	
@@ -152,6 +160,7 @@ public class Game implements Runnable {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 }

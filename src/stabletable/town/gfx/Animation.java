@@ -32,4 +32,8 @@ public class Animation {
 		return frames[index];
 	}
 	
+	public BufferedImage getFirstFrame() {
+		return frames[0];
+	}
+	
 }

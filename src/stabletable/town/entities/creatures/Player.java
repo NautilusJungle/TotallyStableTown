@@ -1,5 +1,6 @@
 package stabletable.town.entities.creatures;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -14,14 +15,14 @@ public class Player extends Creature {
 	// Animations
 	
 	private Animation animDown, animUp, animLeft, animRight;
-	
+		
 	public Player(Handler handler, float x, float y) {
 		super(handler, x, y, Creature.DEFAULT_CREATURE_WIDTH, DEFAULT_CREATURE_HEIGHT);
 		this.handler = handler;
-		bounds.x = 40;
-		bounds.y = 64;
-		bounds.width=48;
-		bounds.height=64;
+		bounds.x = 16;
+		bounds.y = 96;
+		bounds.width=32;
+		bounds.height=32;
 		
 		// Animations
 		
@@ -71,15 +72,23 @@ public class Player extends Creature {
 
 	private BufferedImage getCurrentAnimationFrame() {
 		if (xMove < 0)
+		{
 			return animLeft.getCurrentFrame();
+		}
 		else if (xMove > 0)
+		{
 			return animRight.getCurrentFrame();
+		}
 		else if (yMove < 0)
+		{
 			return animUp.getCurrentFrame();
+		}
 		else if (yMove > 0)
+		{
 			return animDown.getCurrentFrame();
+		}
 		else
-			return Assets.player;
+			return animDown.getFirstFrame();
 	}
 	
 }
