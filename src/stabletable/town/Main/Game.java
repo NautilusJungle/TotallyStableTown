@@ -7,6 +7,7 @@ import stabletable.town.Display.Display;
 import stabletable.town.gfx.Assets;
 import stabletable.town.gfx.GameCamera;
 import stabletable.town.input.KeyManager;
+import stabletable.town.input.MouseManager;
 import stabletable.town.states.GameState;
 import stabletable.town.states.MenuState;
 import stabletable.town.states.State;
@@ -25,11 +26,12 @@ public class Game implements Runnable {
 	private Graphics g;
 	
 	// States
-	private State gameState;
-	private State menuState;
+	public State gameState;
+	public State menuState;
 	
 	// Input
 	private KeyManager keyManager;
+	private MouseManager mouseManager;
 	
 	// Camera
 	private GameCamera gameCamera;
@@ -41,16 +43,25 @@ public class Game implements Runnable {
 		return keyManager;
 	}
 
+	public MouseManager getMouseManager() {
+		return mouseManager;
+	}
+	
 	public Game(String title, int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.title = title;
 		keyManager = new KeyManager();
+		mouseManager = new MouseManager();
 	}
 	
 	private void init() {
 		display = new Display(title, width, height);
 		display.getFrame().addKeyListener(keyManager);
+		display.getFrame().addMouseListener(mouseManager);
+		display.getCanvas().addMouseListener(mouseManager);
+		display.getFrame().addMouseMotionListener(mouseManager);
+		display.getCanvas().addMouseMotionListener(mouseManager);
 		Assets.init();
 		
 		handler = new Handler(this);
@@ -58,7 +69,7 @@ public class Game implements Runnable {
 		
 		gameState = new GameState(handler);
 		menuState = new MenuState(handler);
-		State.setState(gameState);
+		State.setState(menuState);
 	}
 	
 	public GameCamera getGameCamera() {

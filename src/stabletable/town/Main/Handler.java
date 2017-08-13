@@ -2,6 +2,7 @@ package stabletable.town.Main;
 
 import stabletable.town.gfx.GameCamera;
 import stabletable.town.input.KeyManager;
+import stabletable.town.input.MouseManager;
 import stabletable.town.worlds.World;
 
 public class Handler {
@@ -27,6 +28,10 @@ public class Handler {
 	
 	public KeyManager getKeyManager() {
 		return game.getKeyManager();
+	}
+	
+	public MouseManager getMouseManager() {
+		return game.getMouseManager();
 	}
 	
 	public Game getGame() {
