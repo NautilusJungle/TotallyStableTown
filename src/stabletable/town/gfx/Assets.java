@@ -11,10 +11,12 @@ public class Assets {
 	public static BufferedImage[] player_down, player_up, player_left, player_right;
 	public static BufferedImage  player,dirt, grass, brickWall;
 	public static BufferedImage tree;
+	public static BufferedImage[] BtnStart;
 	
 	public static SpriteSheet charSheet = new SpriteSheet(ImageLoader.loadImage("/textures/char-sheet.png"));
 	public static SpriteSheet terrainSheet = new SpriteSheet(ImageLoader.loadImage("/textures/terrain-sheet.png"));
 	public static SpriteSheet statentSheet = new SpriteSheet(ImageLoader.loadImage("/textures/statent-sheet.png"));
+	public static SpriteSheet uiSheet = new SpriteSheet(ImageLoader.loadImage("/textures/ui-sheet.png"));
 	
 	public static void init() {
 		
@@ -37,6 +39,11 @@ public class Assets {
 		// Static Entities
 		tree = statentSheet.crop(0, 0, width, height);
 	
+		// UI
+		BtnStart = new BufferedImage[2];
+		BtnStart[0] = uiSheet.crop(0,0, width*2, height);
+		BtnStart[1] = uiSheet.crop(width*2, 0, width*2, height);
+		
 	}
 	
 	private static BufferedImage[] addAnimation(BufferedImage[] entity, int xStart, int yStart) {
