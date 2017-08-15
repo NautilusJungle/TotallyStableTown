@@ -68,6 +68,8 @@ public class Player extends Creature {
 //		g.fillRect((int) (x + bounds.x - handler.getGameCamera().getxOffset()),
 //				(int) (y + bounds.y - handler.getGameCamera().getyOffset()),
 //				bounds.width, bounds.height);
+//		SHOW PLAYER'S EXACT POSITION
+//		g.drawString("["+String.valueOf((x+bounds.getWidth()))+","+String.valueOf(y+height-bounds.getHeight()/2)+"]", 10, 10);
 	}
 
 	private BufferedImage getCurrentAnimationFrame() {
